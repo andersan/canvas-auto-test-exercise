@@ -1,0 +1,281 @@
+version: "3.3"
+
+services:
+  wdio-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wdio-build
+
+  wdio-tests:
+    image: wdio-build
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    network_mode: host
+    command:
+      ./wdio-tests.sh
+      #command: bash -c "chmod -R a+rwx /webdriverio/logs && chmod -R a+rwx /webdriverio/screenshots && chmod -R a+rwx /webdriverio/allure-results && chmod -R a+rwx /webdriverio/allure-report && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 && npm run test"
+
+  create-app:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./create-app.sh
+
+  add-page:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./add-page.sh
+
+  add-block:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./add-block.sh
+
+  all-pages:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./all-pages.sh
+
+  all-blocks:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./all-blocks.sh
+
+  no-extension:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./no-extension.sh
+
+  add-specific-page:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PAGE_NAME=${PAGE_NAME}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./add-specific-page.sh
+
+  delete-app:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PAGE_NAME=${PAGE_NAME}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./delete-app.sh
+
+  update-color:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PAGE_NAME=${PAGE_NAME}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./update-color.sh
+
+  copy-spec-app:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - APP_NAME=${APP_NAME}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./copy-spec-app.sh
+
+
+  buy-premium:
+    image: wdio-build
+    depends_on:
+      - wdio-container
+    environment:
+      - GIT_BRANCH=${GIT_BRANCH}
+      - PAGE_NAME=${PAGE_NAME}
+      - PRD_USERNAME_CHRIS=${PRD_USERNAME_CHRIS}
+      - PRD_PASSWORD_CHRIS=${PRD_PASSWORD_CHRIS}
+      - PRD_USERNAME_PUBLIC=${PRD_USERNAME_PUBLIC}
+      - PRD_PASSWORD_PUBLIC=${PRD_PASSWORD_PUBLIC}
+
+      - QA_USERNAME_CHRIS=${QA_USERNAME_CHRIS}
+      - QA_PASSWORD_CHRIS=${QA_PASSWORD_CHRIS}
+      - QA_USERNAME_PUBLIC=${QA_USERNAME_PUBLIC}
+      - QA_PASSWORD_PUBLIC=${QA_PASSWORD_PUBLIC}
+    volumes:
+      - ./allure-results:/webdriverio/allure-results
+      - ./screenshots:/webdriverio/screenshots
+      - ./allure-report:/webdriverio/allure-report
+      - ./logs:/webdriverio/logs
+    command: ./buy-premium.sh

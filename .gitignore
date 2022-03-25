@@ -1,0 +1,15 @@
+node_modules/
+allure-report/
+reports/
+allure-results/
+allure-report/
+screenshots/*.png
+.vscode/
+.vscode/settings.json
+logs/*.log
+.DS_Store
+.settings
+.project
+package-lock.json
+.env
+

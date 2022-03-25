@@ -1,0 +1,68 @@
+{
+  "name": "leonid-automated-testing-code",
+  "version": "1.0.0",
+  "description": "airdev",
+  "main": "wdio.conf.ts",
+  "scripts": {
+    "test": "./node_modules/.bin/wdio wdio.conf.ts --cucumberOpts.tagExpression='@smoke'",
+    "browserstack": "./node_modules/.bin/wdio browserstack.conf.ts",
+    "createApp": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@createNewApp'",
+    "add-block": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@add-block'",
+    "add-page": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@add-page'",
+    "all-pages": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@all-pages'",
+    "all-blocks": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@all-blocks'",
+    "no-extension": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@no-extension'",
+    "add-specific-page": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@add-specific-page'",
+    "delete-app": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@delete-app'",
+    "update-color": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@update-color'",
+    "copy-app": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@copy-app'",
+    "buy-premium": "./node_modules/.bin/wdio wdio.conf.ts  --cucumberOpts.tagExpression='@buy-premium'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airdevco/leonid-automated-testing-code.git"
+  },
+  "author": "Leonid Bartashchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airdevco/leonid-automated-testing-code/issues"
+  },
+  "homepage": "https://github.com/airdevco/leonid-automated-testing-code#readme",
+  "dependencies": {
+    "@wdio/cucumber-framework": "^7.5.2",
+    "@wdio/devtools-service": "^7.5.2",
+    "@wdio/local-runner": "^7.5.2",
+    "@wdio/selenium-standalone-service": "^7.5.2",
+    "@wdio/spec-reporter": "^7.5.2",
+    "allure-commandline": "^2.13.8",
+    "browserstack-local": "^1.4.8",
+    "chromedriver": "^99.0.0",
+    "chromium": "^3.0.2",
+    "cucumber": "^7.0.0-rc.0",
+    "dotenv": "^16.0.0",
+    "fibers": "^5.0.0",
+    "moment": "^2.29.1",
+    "uuid": "^8.3.2",
+    "wdio-chromedriver-service": "^7.0.0",
+    "webdriverio": "^7.7.3"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.3.1",
+    "@wdio/allure-reporter": "^7.6.1",
+    "@wdio/browserstack-service": "^7.8.0",
+    "@wdio/cli": "^7.6.1",
+    "@wdio/shared-store-service": "^7.5.2",
+    "@wdio/sync": "^7.6.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "keywords": [
+    "webdriverio",
+    "browserstack",
+    "selenium",
+    "tests"
+  ],
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }
+}

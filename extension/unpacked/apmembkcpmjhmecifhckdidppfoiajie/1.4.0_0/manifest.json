@@ -1,0 +1,29 @@
+{
+   "background": {
+      "persistent": true,
+      "scripts": [ "background.bundle.js" ]
+   },
+   "content_scripts": [ {
+      "js": [ "receiveMessageContentScript.bundle.js" ],
+      "matches": [ "https://bubble.io/*", "https://*.bubble.is/*" ],
+      "run_at": "document_end"
+   } ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval' https://airdevco.s3.us-west-1.amazonaws.com/*; object-src 'self'",
+   "description": "Easily add beautiful pages and blocks to your Canvas app.",
+   "differential_fingerprint": "1.3d46e0273819988731a7ede4d33105db9fd4b546dc4bb0d88a94bc40a516fa30",
+   "icons": {
+      "128": "images/128x128_logo.png",
+      "16": "images/16x16_logo.png",
+      "48": "images/48x48_logo.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAocUS4xZEriBTWLOJnhsPRqnLaZQm6vOhjkLUytcchg3ERy3oYvxNjHDETmnuECMgEymgm2SYEHzdV73tXqlgZSwpudM17yigCT7HoV3qJvIrPmrzqrgj3VKuemW2sb+ft6tLhz9NPxNugiVo9ytQT244+H9by84BtL3yeMa6S/8kexl5jQ3+bDgk83Ad5atrkfyEQLMK+s39qoP80/0bkKUpJnotTUBje7Z21QPQxUR6YbsSgVX3TWgEj269H9fSmLqx8bDRlqyHCvCXi9Pz4WqY4lg3X5AYTM0iPBu+7WinrvUSKswBT2F41n5DFFOiKzX5rVFS/nl+HUrfMoTZSwIDAQAB",
+   "manifest_version": 2,
+   "name": "Canvas by AirDev",
+   "page_action": {
+      "default_icon": "images/16x16_logo.png",
+      "default_title": "Click to open Canvas"
+   },
+   "permissions": [ "tabs", "https://airdevco.s3.us-west-1.amazonaws.com/", "https://bubble.io/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.4.0"
+}

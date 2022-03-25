@@ -1,0 +1,5 @@
+.context-menu-item.canvas_save_block:before, .context-menu-item.canvas_save_page:before, .context-menu-item.canvas_save_data_type:before, .context-menu-item.canvas_save_apiconnector:before, .context-menu-item.canvas_save_style:before, .context-menu-item.canvas_save_reusable:before {
+    content: url("https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Fd44%2Ff1607381135887x192064606627931230%2Fcanvas%2520app%2520logo.png?w=15&h=&auto=compress&dpr=1&fit=max");
+    left: 28px;
+    top: 7px;
+}
