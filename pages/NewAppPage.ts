@@ -21,10 +21,14 @@ class NewAppPage extends AbstractPage {
     '//*[@class="bubble-element CustomElement"]//button[text()="Create a new app"]';
   private assistant = '//*[text()="Close the assistant"]';
   private watchVideo = '//*[text()="Watch video"]';
+  private overlay = '//*[text()="Close the assistant"]';
 
   private details =
     // '//*[text()="Details of what you\'re building"]/parent::div/parent::div/parent::div/parent::div//input';
     '//*[text()="Details about your app (optional)"]/parent::div//input';
+
+  private videoPopup = 
+    '//*[@class="modal-popup video-panel-popup"]//div[@class="fa fa-close btn-close"]';
 
   fillOutNewAppForm() {
     const appName = this.type(this.name, Utility.getRandomId("autotest-"));
@@ -43,25 +47,17 @@ class NewAppPage extends AbstractPage {
 
   closePopUp() {
     this.refreshPage();
-    if (!this.isDisplayed(this.assistant) && this.isDisplayed(this.iframe)) {
-      console.log("One...");
+    if (this.isDisplayed(this.iframe)) {
       this.switchToIframe(this.iframe);
-      this.click(this.watchVideo);
       this.click(this.cross);
       this.switchToParentIframe();
-      if (this.isDisplayed(this.assistant)) {
-        console.log("Two...");
-        this.click(this.assistant);
-      }
-    } else if (
-      this.isDisplayed(this.assistant) &&
-      !this.isDisplayed(this.iframe)
-    ) {
-      console.log("Three...");
-      this.click(this.assistant);
-    } else {
-      console.log("Pop up is not handled...");
     }
+    if (this.isDisplayed(this.assistant)) {
+      console.log("Closing assistant block......");
+      this.click(this.assistant);
+    }
+    if (this.isDisplayed(this.videoPopup))
+      this.click(this.videoPopup);
   }
 }
 

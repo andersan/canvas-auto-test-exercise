@@ -154,9 +154,13 @@ When(/^I open Canvas Extension$/, () => {
 });
 
 Then(/^I add a new page (.+) to the Bubble app$/, (page) => {
+  console.log("I add a new page --- start adding page");
   let expectedPageName = CanvasExtension.addNewPage(page);
+  console.log("I add a new page --- finished adding page");
   expect(CanvasExtension.pageName).toBeExisting();
+  console.log("I add a new page --- page should be verified as existing");
   expect(CanvasExtension.pageName).toHaveTextContaining(expectedPageName);
+  console.log("I add a new page --- finished adding");
 });
 
 Then(/^I go back to home$/, () => {
