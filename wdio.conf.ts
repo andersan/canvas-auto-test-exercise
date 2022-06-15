@@ -72,8 +72,6 @@ export const config: WebdriverIO.Config = {
 
   specs: [
     "./features/AddNewPageBubble.feature",
-    "./features/LoginLogout.feature",
-    "./features/Add2-ColumnVideoChatPage.feature",
     "./features/CreateNewApp.feature",
     "./features/AddToggleTabsGroupBlock.feature"
   ],
@@ -89,7 +87,7 @@ export const config: WebdriverIO.Config = {
         extensions: [
           // Entry should be a base64-encoded packed Chrome app (.crx)
           require("fs")
-            .readFileSync("./extension/1.4.0_0.crx")
+            .readFileSync("./extension/1.4.4_0.crx")
             .toString("base64"),
         ],
 
@@ -103,8 +101,8 @@ export const config: WebdriverIO.Config = {
           "--disable-gpu", //only for windows
           "--disable-popup-blocking",
           "--disable-notifications",
-          "--disable-extensions-except=./extension/unpacked/apmembkcpmjhmecifhckdidppfoiajie/1.4.0_0",
-          "--load-extension=./extension/unpacked/apmembkcpmjhmecifhckdidppfoiajie/1.4.0_0",
+          "--disable-extensions-except=./extension/unpacked/apmembkcpmjhmecifhckdidppfoiajie/1.4.4_0",
+          "--load-extension=./extension/unpacked/apmembkcpmjhmecifhckdidppfoiajie/1.4.4_0",
         ],
       },
       acceptInsecureCerts: true,

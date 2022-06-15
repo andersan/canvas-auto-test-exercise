@@ -34,7 +34,8 @@ RUN apt install -y xdg-utils
 
 #Get specific Chrome version here https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
 # ENV GOOGLE_CHROME_VERSION "96.0.4664.110-1"
-ENV GOOGLE_CHROME_VERSION "99.0.4844.82-1"
+# ENV GOOGLE_CHROME_VERSION "99.0.4844.82-1"
+ENV GOOGLE_CHROME_VERSION "102.0.5005.61-1"
 
 RUN wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${GOOGLE_CHROME_VERSION}_amd64.deb && \
     dpkg -i google-chrome-stable_${GOOGLE_CHROME_VERSION}_amd64.deb && \

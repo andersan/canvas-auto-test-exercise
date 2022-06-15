@@ -36,7 +36,7 @@
     "@wdio/spec-reporter": "^7.5.2",
     "allure-commandline": "^2.13.8",
     "browserstack-local": "^1.4.8",
-    "chromedriver": "^99.0.0",
+    "chromedriver": "^102.0.0",
     "chromium": "^3.0.2",
     "cucumber": "^7.0.0-rc.0",
     "dotenv": "^16.0.0",

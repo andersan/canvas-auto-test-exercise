@@ -23,6 +23,8 @@ class AdminPortalPage extends AbstractPage {
   addAppIdentifiers() {
     this.waitForPageLoaded();
     this.pause(1000);
+    this.refreshPage();
+    this.waitForPageLoaded();
     this.click(this.addAppIdsBtn);
     this.click(this.confirm);
     this.click(this.check);

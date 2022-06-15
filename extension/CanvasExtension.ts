@@ -4,7 +4,6 @@ import { Iframe } from "../iframe/Iframe";
 import { Extension } from "typescript";
 
 class CanvasExtension extends AbstractPage {
-  private canvasBtn = "#canvasButton";
 
   // https://chrome.google.com/webstore/detail/canvas-by-airdev/apmembkcpmjhmecifhckdidppfoiajie?hl=en
 
@@ -33,28 +32,16 @@ class CanvasExtension extends AbstractPage {
 
   openCanvasExtension() {
     console.log("Opening chrome extension");
-    if (this.isDisplayed(Iframe.ExtensionIframe))
+    if (this.isDisplayed(Iframe.ExtensionIframe)) {
+      console.log("Chrome extension already open");
       return;
-    this.click(this.canvasBtn);
-    if (this.isDisplayed(this.canvasBtn)) {
-      this.click(this.canvasBtn);
     }
-    // let display: boolean;
-    // do {
-    //   this.switchToIframe(Iframe.ExtensionIframe);
-    //   display = this.isDisplayed(Iframe.СanvasIframe);
-    //   console.log("display = " + display);
-    //   this.switchToParentFrame();
-    //   if (!display) {
-    //     console.log("Canvas extension still not open " + display);
-    //     this.click(this.canvasBtn);
-    //   }
-    // } while (!display);
-    // console.log("Canvas extension is open");
+    // TODO: create a new way to open canvas extension. 
+    // currently, have to modify content script to load and open automatically when a new ext. version is added to the test suite.
   }
 
   private addNewPageBtn =
-    '//*[text()="Add a new page"]/parent::div/parent::div/parent::div/parent::div';
+    '//*[text()="Pages"]/parent::div/parent::div/parent::div/parent::div';
   private addStandardPage =
     '//*[text()="Standard Portal / Dashboard Page"]/parent::div/parent::div/parent::div/parent::div//button[text()="+ Add page"]';
 
@@ -192,7 +179,7 @@ class CanvasExtension extends AbstractPage {
 
   // TODO: set these XPaths
   private addblockToPageBtn = '';
-  private searchBox = '';
+  private searchBox = '[placeholder="Search by keyword"]';
   private pastingBlock = '//*[contains(text(), "Pasting")]';
 
   addBlock(search: string, blockName: string) {
